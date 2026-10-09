@@ -73,7 +73,26 @@ db.exec(`
             REFERENCES personnel(personnel_id)
     );
 `);
+// Add tamper-detection fields to existing custody event tables.
+const custodyColumns = db.prepare(
+    "PRAGMA table_info(custody_events)"
+).all();
 
+if (!custodyColumns.some(column => column.name === "previous_hash")) {
+    db.exec(`
+        ALTER TABLE custody_events
+        ADD COLUMN previous_hash TEXT;
+    `);
+}
+
+if (!custodyColumns.some(column => column.name === "event_hash")) {
+    db.exec(`
+        ALTER TABLE custody_events
+        ADD COLUMN event_hash TEXT;
+    `);
+}
+
+console.log("Custody event hash fields checked.");
 console.log("Digi-CoC custody events table ready.");
 
 console.log("Digi-CoC cases table ready.");

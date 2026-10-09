@@ -240,7 +240,15 @@ app.post("/api/custody-events", (req, res) => {
             error: "Event ID, evidence ID, receiving personnel ID, and transfer reason are required."
         });
     }
-
+// Prevent an officer from transferring evidence to themselves.
+if (
+    from_personnel_id &&
+    from_personnel_id === to_personnel_id
+) {
+    return res.status(400).json({
+        error: "Transfer rejected: sender and receiver cannot be the same person."
+    });
+}
     // This route currently supports development testing only.
     if (verification_method !== "SIMULATED-TEST-ONLY") {
         return res.status(400).json({
