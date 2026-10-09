@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cases | Digi-CoC</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-mark">D</div>
+
+            <div>
+                <h2>Digi-CoC</h2>
+                <span>Forensic Chain of Custody</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <span>▣</span>
+                Dashboard
+            </a>
+
+            <a href="case.html" class="nav-item active">
+                <span>▤</span>
+                Cases
+            </a>
+
+            <a href="evidence.html" class="nav-item">
+                <span>◈</span>
+                Evidence
+            </a>
+
+            <a href="custody.html" class="nav-item">
+                <span>⇄</span>
+                Chain of Custody
+            </a>
+
+            <a href="personnel.html" class="nav-item">
+                <span>♙</span>
+                Personnel
+            </a>
+
+            <a href="devices.html" class="nav-item">
+                <span>▣</span>
+                Devices
+            </a>
+
+            <a href="reports.html" class="nav-item">
+                <span>▥</span>
+                Reports
+            </a>
+
+            <a href="audit.html" class="nav-item">
+                <span>◉</span>
+                Audit Logs
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <span>Digi-CoC System</span>
+            <small>Frontend Prototype</small>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div>
+                <span class="page-label">CASE MANAGEMENT</span>
+                <h1>Cases</h1>
+            </div>
+
+            <div class="topbar-status">
+                <span class="status-dot"></span>
+                System Online
+            </div>
+
+        </header>
+
+
+        <!-- PAGE CONTENT -->
+        <section class="page-content">
+
+            <div class="page-intro">
+
+                <div>
+                    <h2>Case Registry</h2>
+
+                    <p>
+                        Register and manage forensic cases within the Digi-CoC
+                        chain-of-custody system.
+                    </p>
+                </div>
+
+                <button class="primary-button" id="addCaseBtn">
+                    + Register New Case
+                </button>
+
+            </div>
+
+
+            <!-- CASE STATISTICS -->
+            <div class="stats-grid case-stats">
+
+                <div class="stat-card">
+                    <span class="stat-label">TOTAL CASES</span>
+                    <strong id="totalCases">0</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">ACTIVE CASES</span>
+                    <strong id="activeCases">0</strong>
+                </div>
+
+                <div class="stat-card">
+                    <span class="stat-label">CLOSED CASES</span>
+                    <strong id="closedCases">0</strong>
+                </div>
+
+            </div>
+
+
+            <!-- CASE TABLE -->
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <h3>Registered Cases</h3>
+
+                        <p>
+                            Cases currently registered in the system.
+                        </p>
+                    </div>
+
+                    <input
+                        type="text"
+                        id="caseSearch"
+                        class="search-input"
+                        placeholder="Search cases..."
+                    >
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table class="data-table">
+
+                        <thead>
+                            <tr>
+                                <th>System Case ID</th>
+                                <th>Case / FIR Number</th>
+                                <th>Registered Date</th>
+                                <th>Evidence</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="casesTableBody">
+                            <!-- Cases loaded by JavaScript -->
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- REGISTER CASE MODAL -->
+    <div class="modal-overlay" id="caseModal">
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+                    <span class="page-label">NEW RECORD</span>
+                    <h2>Register New Case</h2>
+                </div>
+
+                <button class="modal-close" id="closeCaseModal">
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="caseForm">
+
+                <div class="form-group">
+
+                    <label for="caseNumber">
+                        Case / FIR Number
+                    </label>
+
+                    <input
+                        type="text"
+                        id="caseNumber"
+                        placeholder="e.g. FIR-123/2026"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="caseDescription">
+                        Case Description
+                    </label>
+
+                    <textarea
+                        id="caseDescription"
+                        rows="4"
+                        placeholder="Brief description of the case..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="caseStatus">
+                        Case Status
+                    </label>
+
+                    <select id="caseStatus">
+
+                        <option value="Active">
+                            Active
+                        </option>
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                        <option value="Closed">
+                            Closed
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelCaseBtn"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Register Case
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/case.js"></script>
+
+</body>
+</html>

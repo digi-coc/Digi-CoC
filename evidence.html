@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Evidence | Digi-CoC</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-mark">D</div>
+
+            <div>
+                <h2>Digi-CoC</h2>
+                <span>Forensic Chain of Custody</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <span>▣</span>
+                Dashboard
+            </a>
+
+            <a href="case.html" class="nav-item">
+                <span>▤</span>
+                Cases
+            </a>
+
+            <a href="evidence.html" class="nav-item active">
+                <span>◈</span>
+                Evidence
+            </a>
+
+            <a href="custody.html" class="nav-item">
+                <span>⇄</span>
+                Chain of Custody
+            </a>
+
+            <a href="personnel.html" class="nav-item">
+                <span>♙</span>
+                Personnel
+            </a>
+
+            <a href="devices.html" class="nav-item">
+                <span>▣</span>
+                Devices
+            </a>
+
+            <a href="reports.html" class="nav-item">
+                <span>▥</span>
+                Reports
+            </a>
+
+            <a href="audit.html" class="nav-item">
+                <span>◉</span>
+                Audit Logs
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <span>Digi-CoC System</span>
+            <small>Frontend Prototype</small>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+                <span class="page-label">EVIDENCE MANAGEMENT</span>
+                <h1>Evidence</h1>
+            </div>
+
+            <div class="topbar-status">
+                <span class="status-dot"></span>
+                System Online
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+        <section class="page-content">
+
+            <div class="page-intro">
+
+                <div>
+                    <h2>Evidence Registry</h2>
+
+                    <p>
+                        Register and manage physical evidence associated
+                        with forensic cases.
+                    </p>
+                </div>
+
+                <button
+                    class="primary-button"
+                    id="addEvidenceBtn"
+                >
+                    + Register Evidence
+                </button>
+
+                
+            </div>
+
+
+            <!-- STATS -->
+
+            <div class="stats-grid evidence-stats">
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        TOTAL EVIDENCE
+                    </span>
+
+                    <strong id="totalEvidence">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        IN CUSTODY
+                    </span>
+
+                    <strong id="inCustody">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        FLAGGED
+                    </span>
+
+                    <strong id="flaggedEvidence">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>Registered Evidence</h3>
+
+                        <p>
+                            Physical evidence currently recorded
+                            in the Digi-CoC system.
+                        </p>
+
+                    </div>
+
+                    <input
+                        type="text"
+                        id="evidenceSearch"
+                        class="search-input"
+                        placeholder="Search evidence..."
+                    >
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table class="data-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Evidence ID</th>
+
+                                <th>Case ID</th>
+
+                                <th>Evidence Type</th>
+
+                                <th>Tag ID</th>
+
+                                <th>Collection Date</th>
+
+                                <th>Collected By</th>
+
+                                <th>Status</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="evidenceTableBody">
+                            <!-- JavaScript -->
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ADD EVIDENCE MODAL -->
+
+    <div
+        class="modal-overlay"
+        id="evidenceModal"
+    >
+
+        <div class="modal">
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="page-label">
+                        NEW RECORD
+                    </span>
+
+                    <h2>Register Evidence</h2>
+
+                </div>
+
+
+                <button
+                    class="modal-close"
+                    id="closeEvidenceModal"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="evidenceForm">
+
+
+                <!-- CASE -->
+
+                <div class="form-group">
+
+                    <label for="evidenceCase">
+                        System Case ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="evidenceCase"
+                        placeholder="e.g. DC-2026-001"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- TYPE -->
+
+                <div class="form-group">
+
+                    <label for="evidenceType">
+                        Evidence Type
+                    </label>
+
+                    <input
+                        type="text"
+                        id="evidenceType"
+                        placeholder="e.g. Clothing, Weapon, Document"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="form-group">
+
+                    <label for="evidenceDescription">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="evidenceDescription"
+                        rows="4"
+                        placeholder="Describe the evidence..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- LOCATION -->
+
+                <div class="form-group">
+
+                    <label for="collectionLocation">
+                        Collection Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="collectionLocation"
+                        placeholder="Location where evidence was collected"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- DATE -->
+
+                <div class="form-group">
+
+                    <label for="collectionDate">
+                        Collection Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="collectionDate"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- COLLECTED BY -->
+
+                <div class="form-group">
+
+                    <label for="collectedBy">
+                        Collected By
+                    </label>
+
+                    <input
+                        type="text"
+                        id="collectedBy"
+                        placeholder="Personnel ID"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- EVIDENCE TAG -->
+
+                <div class="form-section">
+
+                    <div class="form-section-title">
+                        Evidence Tag
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="tagType">
+                            Tag Type
+                        </label>
+
+                        <select id="tagType" required>
+
+                            <option value="RFID">
+                                RFID
+                            </option>
+
+                            <option value="NFC">
+                                NFC
+                            </option>
+
+                            <option value="QR">
+                                QR
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="tagId">
+                            Evidence Tag ID
+                        </label>
+
+                        <input
+                            type="text"
+                            id="tagId"
+                            placeholder="Scan or enter tag ID"
+                            required
+                        >
+
+                        <small class="form-help">
+                            The tag ID uniquely identifies the physical evidence package.
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TAG STATUS -->
+
+                <div
+                    class="tag-status-box"
+                    id="tagStatus"
+                >
+
+                    <span class="tag-status-label">
+                        Tag Status
+                    </span>
+
+                    <span
+                        class="tag-status-value"
+                        id="tagStatusValue"
+                    >
+                        Not assigned
+                    </span>
+
+                </div>
+
+
+                <!-- FORM ACTIONS -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelEvidenceBtn"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Register Evidence
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/evidence.js"></script>
+
+</body>
+
+</html>
