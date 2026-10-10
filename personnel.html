@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Digi-CoC | Personnel</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                D
+            </div>
+
+            <div class="brand-text">
+
+                <h1>Digi-CoC</h1>
+
+                <span>
+                    Digital Chain of Custody
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <nav class="navigation">
+
+            <div class="nav-section-title">
+                MAIN
+            </div>
+
+
+            <a href="index.html" class="nav-item">
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </a>
+
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▣</span>
+                <span>Cases</span>
+            </a>
+
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">◈</span>
+                <span>Evidence</span>
+            </a>
+
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">⇄</span>
+                <span>Chain of Custody</span>
+            </a>
+
+
+            <div class="nav-section-title">
+                MANAGEMENT
+            </div>
+
+
+            <a
+                href="personnel.html"
+                class="nav-item active"
+            >
+                <span class="nav-icon">♙</span>
+                <span>Personnel</span>
+            </a>
+
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▤</span>
+                <span>Devices</span>
+            </a>
+
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">▥</span>
+                <span>Reports</span>
+            </a>
+
+
+            <a href="#" class="nav-item">
+                <span class="nav-icon">≡</span>
+                <span>Audit Logs</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                <div>
+
+                    <strong>
+                        System Online
+                    </strong>
+
+                    <small>
+                        Secure connection
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="page-label">
+                    PERSONNEL MANAGEMENT
+                </p>
+
+                <h2>
+                    Personnel
+                </h2>
+
+            </div>
+
+
+            <div class="topbar-actions">
+
+                <button
+                    class="icon-button"
+                    title="Notifications"
+                >
+                    ♢
+                </button>
+
+
+                <div class="user-profile">
+
+                    <div class="user-avatar">
+                        A
+                    </div>
+
+                    <div class="user-info">
+
+                        <strong>
+                            Administrator
+                        </strong>
+
+                        <span>
+                            System Access
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- PERSONNEL CONTENT -->
+
+        <section class="dashboard-content">
+
+
+            <!-- PAGE INTRO -->
+
+            <div class="page-introduction">
+
+                <div>
+
+                    <p class="eyebrow">
+                        AUTHORIZATION MANAGEMENT
+                    </p>
+
+                    <h3>
+                        Authorized Personnel
+                    </h3>
+
+                    <p class="page-description">
+                        Manage personnel authorized to access
+                        the Digi-CoC system and personnel authorized
+                        to physically handle forensic evidence.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    id="addPersonnelButton"
+                >
+                    + Add Personnel
+                </button>
+
+            </div>
+
+
+
+            <!-- SYSTEM ACCESS -->
+
+            <section class="panel personnel-section">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            SYSTEM ACCESS
+                        </p>
+
+                        <h3>
+                            Authorized System Personnel
+                        </h3>
+
+                    </div>
+
+
+                    <span class="record-count">
+                        <span id="systemPersonnelCount">
+                            0
+                        </span>
+                        personnel
+                    </span>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Personnel ID
+                                </th>
+
+                                <th>
+                                    Name
+                                </th>
+
+                                <th>
+                                    Role / Rank
+                                </th>
+
+                                <th>
+                                    Department
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Access
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="systemPersonnelTable">
+
+                            <tr class="empty-row">
+
+                                <td colspan="6">
+                                    No system personnel registered yet.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- EVIDENCE HANDLERS -->
+
+            <section class="panel personnel-section">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <p class="eyebrow">
+                            EVIDENCE HANDLING
+                        </p>
+
+                        <h3>
+                            Authorized Evidence Handlers
+                        </h3>
+
+                    </div>
+
+
+                    <span class="record-count">
+
+                        <span id="evidencePersonnelCount">
+                            0
+                        </span>
+
+                        personnel
+
+                    </span>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Personnel ID
+                                </th>
+
+                                <th>
+                                    Name
+                                </th>
+
+                                <th>
+                                    Role / Rank
+                                </th>
+
+                                <th>
+                                    Department
+                                </th>
+
+                                <th>
+                                    Biometric Status
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="evidencePersonnelTable">
+
+                            <tr class="empty-row">
+
+                                <td colspan="6">
+                                    No evidence handlers registered yet.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- INFORMATION -->
+
+            <div class="information-box">
+
+                <div class="information-icon">
+                    i
+                </div>
+
+                <div>
+
+                    <strong>
+                        Different authorization levels
+                    </strong>
+
+                    <p>
+                        System access authorization and physical
+                        evidence-handling authorization are maintained
+                        separately. Evidence handlers must have their
+                        biometric identity enrolled before they can
+                        participate in a verified custody transaction.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="js/personnel.js"></script>
+
+</body>
+
+</html>

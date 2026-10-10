@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reports | Digi-CoC</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-mark">D</div>
+
+            <div>
+                <h2>Digi-CoC</h2>
+                <span>Forensic Chain of Custody</span>
+            </div>
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <span>▣</span>
+                Dashboard
+            </a>
+
+            <a href="case.html" class="nav-item">
+                <span>▤</span>
+                Cases
+            </a>
+
+            <a href="evidence.html" class="nav-item">
+                <span>◈</span>
+                Evidence
+            </a>
+
+            <a href="custody.html" class="nav-item">
+                <span>⇄</span>
+                Chain of Custody
+            </a>
+
+            <a href="personnel.html" class="nav-item">
+                <span>♙</span>
+                Personnel
+            </a>
+
+            <a href="devices.html" class="nav-item">
+                <span>▣</span>
+                Devices
+            </a>
+
+            <a href="reports.html" class="nav-item active">
+                <span>▥</span>
+                Reports
+            </a>
+
+            <a href="audit.html" class="nav-item">
+                <span>◉</span>
+                Audit Logs
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+            <span>Digi-CoC System</span>
+            <small>Frontend Prototype</small>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+
+                <span class="page-label">
+                    DOCUMENTATION
+                </span>
+
+                <h1>Reports</h1>
+
+            </div>
+
+
+            <div class="topbar-status">
+
+                <span class="status-dot"></span>
+
+                System Online
+
+            </div>
+
+        </header>
+
+
+        <section class="page-content">
+
+
+            <div class="page-intro">
+
+                <div>
+
+                    <h2>Report Generation</h2>
+
+                    <p>
+                        Generate printable forensic chain-of-custody
+                        reports from recorded case and evidence data.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- REPORT OPTIONS -->
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>Create Report</h3>
+
+                        <p>
+                            Select the information that should appear
+                            in the generated report.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form id="reportForm">
+
+
+                    <div class="report-form-grid">
+
+
+                        <div class="form-group">
+
+                            <label for="reportCase">
+                                Case
+                            </label>
+
+                            <select id="reportCase" required>
+
+                                <option value="">
+                                    Select Case
+                                </option>
+
+                                <option value="DC-2026-001">
+                                    DC-2026-001 — FIR-123/2026
+                                </option>
+
+                                <option value="DC-2026-002">
+                                    DC-2026-002 — FIR-124/2026
+                                </option>
+
+                                <option value="DC-2026-003">
+                                    DC-2026-003 — FIR-118/2026
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="reportType">
+                                Report Type
+                            </label>
+
+                            <select id="reportType">
+
+                                <option value="full">
+                                    Full Chain of Custody
+                                </option>
+
+                                <option value="evidence">
+                                    Evidence Summary
+                                </option>
+
+                                <option value="audit">
+                                    Audit Report
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="report-options">
+
+                        <label class="checkbox-option">
+
+                            <input
+                                type="checkbox"
+                                id="includeEvidence"
+                                checked
+                            >
+
+                            <span>
+                                Include evidence details
+                            </span>
+
+                        </label>
+
+
+                        <label class="checkbox-option">
+
+                            <input
+                                type="checkbox"
+                                id="includeCustody"
+                                checked
+                            >
+
+                            <span>
+                                Include custody events
+                            </span>
+
+                        </label>
+
+
+                        <label class="checkbox-option">
+
+                            <input
+                                type="checkbox"
+                                id="includeVerification"
+                                checked
+                            >
+
+                            <span>
+                                Include biometric verification records
+                            </span>
+
+                        </label>
+
+
+                        <label class="checkbox-option">
+
+                            <input
+                                type="checkbox"
+                                id="includeAudit"
+                            >
+
+                            <span>
+                                Include audit information
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            class="secondary-button"
+                            id="previewReportBtn"
+                        >
+                            Preview Report
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            class="primary-button"
+                        >
+                            Generate Report
+                        </button>
+
+                    </div>
+
+
+                </form>
+
+            </div>
+
+
+            <!-- RECENT REPORTS -->
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>Recent Reports</h3>
+
+                        <p>
+                            Previously generated reports.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table class="data-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Report ID</th>
+
+                                <th>Case ID</th>
+
+                                <th>Report Type</th>
+
+                                <th>Generated</th>
+
+                                <th>Generated By</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="reportsTableBody">
+                            <!-- JavaScript -->
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- REPORT PREVIEW MODAL -->
+
+    <div
+        class="modal-overlay"
+        id="reportModal"
+    >
+
+        <div class="report-modal">
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="page-label">
+                        REPORT PREVIEW
+                    </span>
+
+                    <h2>Digi-CoC Chain of Custody Report</h2>
+
+                </div>
+
+
+                <button
+                    class="modal-close"
+                    id="closeReportModal"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <div
+                class="report-preview"
+                id="reportPreview"
+            >
+                <!-- Generated preview -->
+            </div>
+
+
+            <div class="form-actions report-modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="closePreviewBtn"
+                >
+                    Close
+                </button>
+
+
+                <button
+                    type="button"
+                    class="primary-button"
+                    id="printReportBtn"
+                >
+                    Print Report
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/reports.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chain of Custody | Digi-CoC</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-mark">D</div>
+
+            <div>
+                <h2>Digi-CoC</h2>
+                <span>Forensic Chain of Custody</span>
+            </div>
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <span>▣</span>
+                Dashboard
+            </a>
+
+            <a href="case.html" class="nav-item">
+                <span>▤</span>
+                Cases
+            </a>
+
+            <a href="evidence.html" class="nav-item">
+                <span>◈</span>
+                Evidence
+            </a>
+
+            <a href="custody.html" class="nav-item active">
+                <span>⇄</span>
+                Chain of Custody
+            </a>
+
+            <a href="personnel.html" class="nav-item">
+                <span>♙</span>
+                Personnel
+            </a>
+
+            <a href="devices.html" class="nav-item">
+                <span>▣</span>
+                Devices
+            </a>
+
+            <a href="reports.html" class="nav-item">
+                <span>▥</span>
+                Reports
+            </a>
+
+            <a href="audit.html" class="nav-item">
+                <span>◉</span>
+                Audit Logs
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+            <span>Digi-CoC System</span>
+            <small>Frontend Prototype</small>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+                <span class="page-label">
+                    EVIDENCE CUSTODY
+                </span>
+
+                <h1>Chain of Custody</h1>
+            </div>
+
+
+            <div class="topbar-status">
+                <span class="status-dot"></span>
+                System Online
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+        <section class="page-content">
+
+
+            <div class="page-intro">
+
+                <div>
+
+                    <h2>Custody Management</h2>
+
+                    <p>
+                        Track every transfer and custody event associated
+                        with registered forensic evidence.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    id="newTransferBtn"
+                >
+                    + New Custody Transfer
+                </button>
+
+            </div>
+
+
+            <!-- STATS -->
+
+            <div class="stats-grid custody-stats">
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        ACTIVE CUSTODY
+                    </span>
+
+                    <strong id="activeCustody">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        TRANSFERS TODAY
+                    </span>
+
+                    <strong id="transfersToday">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        VERIFICATION STATUS
+                    </span>
+
+                    <strong id="verificationStatus">
+                        READY
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- CURRENT CUSTODY -->
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>Current Evidence Custody</h3>
+
+                        <p>
+                            Current personnel responsible for registered
+                            evidence.
+                        </p>
+
+                    </div>
+
+
+                    <input
+                        type="text"
+                        id="custodySearch"
+                        class="search-input"
+                        placeholder="Search evidence..."
+                    >
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table class="data-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Evidence ID</th>
+
+                                <th>Case ID</th>
+
+                                <th>Current Holder</th>
+
+                                <th>Location</th>
+
+                                <th>Last Verified</th>
+
+                                <th>Status</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="custodyTableBody">
+                            <!-- JavaScript -->
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECENT TRANSFERS -->
+
+            <div class="content-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>Recent Custody Events</h3>
+
+                        <p>
+                            Latest recorded evidence movements.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="custody-events"
+                     id="custodyEvents">
+
+                    <!-- JavaScript -->
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- TRANSFER MODAL -->
+
+    <div
+        class="modal-overlay"
+        id="transferModal"
+    >
+
+        <div class="modal">
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="page-label">
+                        CUSTODY EVENT
+                    </span>
+
+                    <h2>New Custody Transfer</h2>
+
+                </div>
+
+
+                <button
+                    class="modal-close"
+                    id="closeTransferModal"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="transferForm">
+
+
+                <div class="form-group">
+
+                    <label for="transferEvidence">
+                        Evidence ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="transferEvidence"
+                        placeholder="e.g. EV-2026-001"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="transferPersonnel">
+                        Receiving Personnel ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="transferPersonnel"
+                        placeholder="e.g. P-002"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="transferLocation">
+                        Receiving Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="transferLocation"
+                        placeholder="e.g. Forensic Laboratory"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="transferPurpose">
+                        Purpose of Transfer
+                    </label>
+
+                    <select id="transferPurpose">
+
+                        <option value="Laboratory Examination">
+                            Laboratory Examination
+                        </option>
+
+                        <option value="Evidence Storage">
+                            Evidence Storage
+                        </option>
+
+                        <option value="Court Presentation">
+                            Court Presentation
+                        </option>
+
+                        <option value="Return to Custody">
+                            Return to Custody
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- BIOMETRIC AREA -->
+
+                <div class="biometric-box">
+
+                    <div class="biometric-icon">
+                        ◉
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Biometric Verification
+                        </strong>
+
+                        <p>
+                            The receiving personnel must verify
+                            their identity using the registered
+                            fingerprint before the transfer can
+                            be completed.
+                        </p>
+
+                        <span id="biometricStatus">
+                            Awaiting fingerprint verification
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelTransferBtn"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Verify & Record Transfer
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/custody.js"></script>
+
+</body>
+</html>

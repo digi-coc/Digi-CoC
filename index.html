@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Digi-CoC | Digital Chain of Custody</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- =========================
+             SIDEBAR
+        ========================== -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-mark">D</div>
+
+                <div class="brand-text">
+                    <h1>Digi-CoC</h1>
+                    <span>Digital Chain of Custody</span>
+                </div>
+            </div>
+
+
+            <nav class="navigation">
+
+                <div class="nav-section-title">
+                    MAIN
+                </div>
+
+                <a href="index.html" class="nav-item active">
+                    <span class="nav-icon">⌂</span>
+                    <span>Dashboard</span>
+                </a>
+
+               <a href="case.html" class="nav-item">
+    <span class="nav-icon">▣</span>
+    <span>Cases</span>
+</a>
+
+<a href="evidence.html" class="nav-item">
+    <span class="nav-icon">◈</span>
+    <span>Evidence</span>
+</a>
+
+<a href="custody.html" class="nav-item">
+    <span class="nav-icon">⇄</span>
+    <span>Chain of Custody</span>
+</a>
+
+                <div class="nav-section-title">
+                    MANAGEMENT
+                </div>
+
+                <a href="personnel.html" class="nav-item">
+    <span class="nav-icon">♙</span>
+    <span>Personnel</span>
+</a>
+
+<a href="devices.html" class="nav-item">
+    <span class="nav-icon">▤</span>
+    <span>Devices</span>
+</a>
+
+<a href="reports.html" class="nav-item">
+    <span class="nav-icon">▥</span>
+    <span>Reports</span>
+</a>
+
+<a href="audit.html" class="nav-item">
+    <span class="nav-icon">≡</span>
+    <span>Audit Logs</span>
+</a>
+
+            </nav>
+
+
+            <div class="sidebar-footer">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+
+                    <div>
+                        <strong>System Online</strong>
+                        <small>Secure connection</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+
+        <main class="main-content">
+
+            <!-- TOP BAR -->
+
+            <header class="topbar">
+
+                <div>
+                    <p class="page-label">FORENSIC EVIDENCE MANAGEMENT</p>
+                    <h2>Dashboard</h2>
+                </div>
+
+
+                <div class="topbar-actions">
+
+                    <button class="icon-button" title="Notifications">
+                        ♢
+                    </button>
+
+                    <div class="user-profile">
+
+                        <div class="user-avatar">
+                            A
+                        </div>
+
+                        <div class="user-info">
+                            <strong>Administrator</strong>
+                            <span>Authorized Personnel</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- =========================
+                 DASHBOARD
+            ========================== -->
+
+            <section class="dashboard-content">
+
+
+                <!-- WELCOME -->
+
+                <div class="welcome-card">
+
+                    <div>
+                        <p class="eyebrow">DIGI-CoC SYSTEM</p>
+
+                        <h3>
+                            Digital evidence.
+                            <br>
+                            Verified custody.
+                        </h3>
+
+                        <p class="welcome-description">
+                            Monitor cases, evidence movement, personnel
+                            authentication and chain-of-custody activity
+                            from one secure system.
+                        </p>
+                    </div>
+
+
+                    <div class="welcome-symbol">
+                        D
+                    </div>
+
+                </div>
+
+
+                <!-- STATISTICS -->
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="eyebrow">SYSTEM OVERVIEW</p>
+                        <h3>Current Status</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="stats-grid">
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-header">
+                            <span>Active Cases</span>
+                            <span class="stat-icon">▣</span>
+                        </div>
+
+                        <strong id="activeCasesCount">0</strong>
+
+                        <span class="stat-description">
+                            Currently registered
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-header">
+                            <span>Evidence Items</span>
+                            <span class="stat-icon">◈</span>
+                        </div>
+
+                        <strong id="evidenceCount">0</strong>
+
+                        <span class="stat-description">
+                            Under system tracking
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-header">
+                            <span>Personnel</span>
+                            <span class="stat-icon">♙</span>
+                        </div>
+
+                        <strong id="personnelCount">0</strong>
+
+                        <span class="stat-description">
+                            Authorized personnel
+                        </span>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-header">
+                            <span>Custody Events</span>
+                            <span class="stat-icon">⇄</span>
+                        </div>
+
+                        <strong id="custodyEventsCount">0</strong>
+
+                        <span class="stat-description">
+                            Recorded transactions
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MAIN DASHBOARD GRID -->
+
+                <div class="dashboard-grid">
+
+
+                    <!-- RECENT CASES -->
+
+                    <section class="panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <p class="eyebrow">CASE MANAGEMENT</p>
+                                <h3>Recent Cases</h3>
+                            </div>
+
+                            <button class="text-button">
+                                View All →
+                            </button>
+
+                        </div>
+
+
+                        <div class="table-wrapper">
+
+                            <table>
+
+                                <thead>
+
+                                    <tr>
+                                        <th>Case Number</th>
+                                        <th>Evidence</th>
+                                        <th>Status</th>
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody id="recentCasesTable">
+
+                                    <tr class="empty-row">
+
+                                        <td colspan="3">
+                                            No cases registered yet.
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- SYSTEM ACTIVITY -->
+
+                    <section class="panel activity-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <p class="eyebrow">SYSTEM MONITOR</p>
+                                <h3>Recent Activity</h3>
+                            </div>
+
+                        </div>
+
+
+                        <div id="activityList" class="activity-list">
+
+                            <div class="empty-activity">
+                                No system activity yet.
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+                <!-- QUICK ACTIONS -->
+
+             <section class="dashboard-section">
+    <div class="section-header">
+        <div>
+            <h2>Quick Actions</h2>
+            <p>Start a Digi-CoC workflow</p>
+        </div>
+    </div>
+
+    <div class="quick-actions">
+
+        <a href="case.html" class="quick-action">
+            <span class="quick-action-title">Create Case</span>
+            <span class="quick-action-text">
+                Create a new investigation case
+            </span>
+        </a>
+
+        <a href="evidence.html" class="quick-action">
+            <span class="quick-action-title">Register Evidence</span>
+            <span class="quick-action-text">
+                Register and document new evidence
+            </span>
+        </a>
+
+        <a href="scan.html" class="quick-action">
+            <span class="quick-action-title">Scan Evidence Tag</span>
+            <span class="quick-action-text">
+                Identify registered evidence using its tag
+            </span>
+        </a>
+
+        <a href="custody.html" class="quick-action">
+            <span class="quick-action-title">Start Custody Transfer</span>
+            <span class="quick-action-text">
+                Verify personnel and record a custody event
+            </span>
+        </a>
+
+        <a href="personnel.html" class="quick-action">
+            <span class="quick-action-title">Register Personnel</span>
+            <span class="quick-action-text">
+                Add authorized personnel and enroll fingerprint
+            </span>
+        </a>
+
+        <a href="audit.html" class="quick-action">
+            <span class="quick-action-title">Security & Audit</span>
+            <span class="quick-action-text">
+                Review access attempts and security events
+            </span>
+        </a>
+
+        <a href="reports.html" class="quick-action">
+            <span class="quick-action-title">Generate Report</span>
+            <span class="quick-action-text">
+                Generate chain-of-custody and audit reports
+            </span>
+        </a>
+
+    </div>
+</section>
+
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>

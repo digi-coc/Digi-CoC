@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Devices | Digi-CoC</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-mark">D</div>
+
+            <div>
+                <h2>Digi-CoC</h2>
+                <span>Forensic Chain of Custody</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <span>▣</span>
+                Dashboard
+            </a>
+
+            <a href="case.html" class="nav-item">
+                <span>▤</span>
+                Cases
+            </a>
+
+            <a href="evidence.html" class="nav-item">
+                <span>◈</span>
+                Evidence
+            </a>
+
+            <a href="custody.html" class="nav-item">
+                <span>⇄</span>
+                Chain of Custody
+            </a>
+
+            <a href="personnel.html" class="nav-item">
+                <span>♙</span>
+                Personnel
+            </a>
+
+            <a href="devices.html" class="nav-item active">
+                <span>▣</span>
+                Devices
+            </a>
+
+            <a href="reports.html" class="nav-item">
+                <span>▥</span>
+                Reports
+            </a>
+
+            <a href="audit.html" class="nav-item">
+                <span>◉</span>
+                Audit Logs
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+            <span>Digi-CoC System</span>
+            <small>Frontend Prototype</small>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+
+                <span class="page-label">
+                    HARDWARE & SYSTEM
+                </span>
+
+                <h1>Devices</h1>
+
+            </div>
+
+
+            <div class="topbar-status">
+
+                <span class="status-dot"></span>
+
+                System Online
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+        <section class="page-content">
+
+
+            <div class="page-intro">
+
+                <div>
+
+                    <h2>Device Management</h2>
+
+                    <p>
+                        Monitor and manage hardware devices registered
+                        with the Digi-CoC system.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    id="addDeviceBtn"
+                >
+                    + Register Device
+                </button>
+
+            </div>
+
+
+            <!-- DEVICE STATS -->
+
+            <div class="stats-grid device-stats">
+
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        REGISTERED DEVICES
+                    </span>
+
+                    <strong id="totalDevices">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        ONLINE
+                    </span>
+
+                    <strong id="onlineDevices">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        OFFLINE
+                    </span>
+
+                    <strong id="offlineDevices">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-label">
+                        ALERTS
+                    </span>
+
+                    <strong id="deviceAlerts">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- DEVICES TABLE -->
+
+            <div class="content-card">
+
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>Registered Devices</h3>
+
+                        <p>
+                            Hardware currently registered with
+                            Digi-CoC.
+                        </p>
+
+                    </div>
+
+
+                    <input
+                        type="text"
+                        id="deviceSearch"
+                        class="search-input"
+                        placeholder="Search devices..."
+                    >
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table class="data-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Device ID</th>
+
+                                <th>Device Name</th>
+
+                                <th>Device Type</th>
+
+                                <th>Location</th>
+
+                                <th>Status</th>
+
+                                <th>Last Seen</th>
+
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="devicesTableBody">
+                            <!-- JavaScript -->
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- DEVICE INFORMATION -->
+
+            <div class="content-card device-info-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>Digi-CoC Hardware Architecture</h3>
+
+                        <p>
+                            Hardware components currently planned
+                            for the system.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hardware-grid">
+
+
+                    <div class="hardware-item">
+
+                        <div class="hardware-icon">
+                            ◉
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Biometric Unit
+                            </strong>
+
+                            <span>
+                                ESP32 + R307S fingerprint sensor
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="hardware-item">
+
+                        <div class="hardware-icon">
+                            ◇
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Evidence Tag Scanner
+                            </strong>
+
+                            <span>
+                                RFID reader and antenna
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="hardware-item">
+
+                        <div class="hardware-icon">
+                            ▣
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Alert System
+                            </strong>
+
+                            <span>
+                                Buzzer for unauthorized events
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="hardware-item">
+
+                        <div class="hardware-icon">
+                            ◎
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Communication
+                            </strong>
+
+                            <span>
+                                ESP32 wireless communication
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <!-- REGISTER DEVICE MODAL -->
+
+    <div
+        class="modal-overlay"
+        id="deviceModal"
+    >
+
+        <div class="modal">
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span class="page-label">
+                        NEW DEVICE
+                    </span>
+
+                    <h2>Register Device</h2>
+
+                </div>
+
+
+                <button
+                    class="modal-close"
+                    id="closeDeviceModal"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="deviceForm">
+
+
+                <div class="form-group">
+
+                    <label for="deviceName">
+                        Device Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="deviceName"
+                        placeholder="e.g. Biometric Unit 01"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="deviceType">
+                        Device Type
+                    </label>
+
+                    <select id="deviceType">
+
+                        <option value="Biometric Unit">
+                            Biometric Unit
+                        </option>
+
+                        <option value="RFID Scanner">
+                            RFID Scanner
+                        </option>
+
+                        <option value="Evidence Device">
+                            Evidence Device
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="deviceLocation">
+                        Device Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="deviceLocation"
+                        placeholder="e.g. Evidence Room"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="deviceIdentifier">
+                        Hardware Identifier
+                    </label>
+
+                    <input
+                        type="text"
+                        id="deviceIdentifier"
+                        placeholder="e.g. ESP32-001"
+                    >
+
+                </div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="cancelDeviceBtn"
+                    >
+                        Cancel
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Register Device
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/devices.js"></script>
+
+</body>
+</html>

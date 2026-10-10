@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Audit Logs | Digi-CoC</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-name">Digi-CoC</div>
+            <div class="brand-subtitle">
+                Digital Chain of Custody
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <span>Dashboard</span>
+            </a>
+
+            <a href="case.html" class="nav-item">
+                <span>Cases</span>
+            </a>
+
+            <a href="evidence.html" class="nav-item">
+                <span>Evidence</span>
+            </a>
+
+            <a href="custody.html" class="nav-item">
+                <span>Chain of Custody</span>
+            </a>
+
+            <a href="personnel.html" class="nav-item">
+                <span>Personnel</span>
+            </a>
+
+            <a href="devices.html" class="nav-item">
+                <span>Devices</span>
+            </a>
+
+            <a href="reports.html" class="nav-item">
+                <span>Reports</span>
+            </a>
+
+            <a href="audit.html" class="nav-item active">
+                <span>Audit Logs</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="system-status">
+                <span class="status-dot"></span>
+                System Operational
+            </div>
+
+            <div class="sidebar-version">
+                Digi-CoC v1.0
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+        <!-- Page Header -->
+
+        <div class="page-header">
+
+            <div>
+                <div class="page-eyebrow">
+                    SYSTEM SECURITY
+                </div>
+
+                <h1>Audit Logs</h1>
+
+                <p>
+                    Complete record of important actions and security events
+                    performed within the Digi-CoC system.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             AUDIT STATISTICS
+        ========================== -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Total Events
+                </div>
+
+                <div class="stat-value" id="totalEvents">
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Recorded system events
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Today's Events
+                </div>
+
+                <div class="stat-value" id="todayEvents">
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Events recorded today
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Security Events
+                </div>
+
+                <div class="stat-value" id="securityEvents">
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Verification and security events
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Unauthorized Attempts
+                </div>
+
+                <div class="stat-value" id="unauthorizedEvents">
+                    0
+                </div>
+
+                <div class="stat-description">
+                    Denied or flagged attempts
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             AUDIT LOG PANEL
+        ========================== -->
+
+        <section class="content-card">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>System Audit Trail</h2>
+
+                    <p>
+                        Every significant system action is recorded with
+                        the responsible personnel, timestamp and event details.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Filters -->
+
+            <div class="audit-filters">
+
+                <div class="form-group">
+
+                    <label for="auditSearch">
+                        Search
+                    </label>
+
+                    <input
+                        type="text"
+                        id="auditSearch"
+                        placeholder="Search event, personnel, evidence or case..."
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="eventTypeFilter">
+                        Event Type
+                    </label>
+
+                    <select id="eventTypeFilter">
+
+                        <option value="all">
+                            All Events
+                        </option>
+
+                        <option value="authentication">
+                            Authentication
+                        </option>
+
+                        <option value="personnel">
+                            Personnel
+                        </option>
+
+                        <option value="evidence">
+                            Evidence
+                        </option>
+
+                        <option value="custody">
+                            Custody
+                        </option>
+
+                        <option value="security">
+                            Security
+                        </option>
+
+                        <option value="device">
+                            Device
+                        </option>
+
+                        <option value="report">
+                            Report
+                        </option>
+
+                        <option value="system">
+                            System
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="severityFilter">
+                        Severity
+                    </label>
+
+                    <select id="severityFilter">
+
+                        <option value="all">
+                            All Levels
+                        </option>
+
+                        <option value="normal">
+                            Normal
+                        </option>
+
+                        <option value="warning">
+                            Warning
+                        </option>
+
+                        <option value="critical">
+                            Critical
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- Audit Table -->
+
+            <div class="table-wrapper">
+
+                <table class="data-table audit-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Timestamp</th>
+
+                            <th>Event ID</th>
+
+                            <th>Event Type</th>
+
+                            <th>Actor</th>
+
+                            <th>Reference</th>
+
+                            <th>Action</th>
+
+                            <th>Severity</th>
+
+                            <th>Status</th>
+
+                            <th>Details</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="auditTableBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- Empty State -->
+
+            <div
+                class="empty-state empty-state-hidden"
+                id="auditEmptyState"
+            >
+
+                <div class="empty-state-title">
+                    No audit events found
+                </div>
+
+                <div class="empty-state-text">
+                    No events match the current search or filters.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SECURITY INFORMATION
+        ========================== -->
+
+        <section class="info-box audit-security-box">
+
+            <div class="info-box-title">
+                Audit Trail Integrity
+            </div>
+
+            <p>
+                Audit logs provide a chronological record of significant
+                system actions. In the production system, audit records
+                will be generated by the backend and protected against
+                unauthorized modification.
+            </p>
+
+            <p>
+                Security-sensitive events such as fingerprint verification,
+                unauthorized access attempts, custody transfers and device
+                alerts should remain traceable to the responsible personnel,
+                device and evidence record.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- JavaScript -->
+
+    <script src="js/audit.js"></script>
+
+</body>
+</html>
