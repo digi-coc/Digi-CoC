@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Scan Evidence Tag | Digi-CoC</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         SIDEBAR
+    =========================================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-mark">D</div>
+
+            <div>
+                <h2>Digi-CoC</h2>
+                <span>Digital Chain of Custody</span>
+            </div>
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="index.html" class="nav-item">
+                <span>Dashboard</span>
+            </a>
+
+            <a href="case.html" class="nav-item">
+                <span>Cases</span>
+            </a>
+
+            <a href="evidence.html" class="nav-item active">
+                <span>Evidence</span>
+            </a>
+
+            <a href="custody.html" class="nav-item">
+                <span>Chain of Custody</span>
+            </a>
+
+            <a href="personnel.html" class="nav-item">
+                <span>Personnel</span>
+            </a>
+
+            <a href="devices.html" class="nav-item">
+                <span>Devices</span>
+            </a>
+
+            <a href="reports.html" class="nav-item">
+                <span>Reports</span>
+            </a>
+
+            <a href="audit.html" class="nav-item">
+                <span>Audit Logs</span>
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+            <span>Digi-CoC Frontend Prototype</span>
+        </div>
+
+    </aside>
+
+
+    <!-- ==========================================
+         MAIN CONTENT
+    =========================================== -->
+
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+                <h1>Scan Evidence Tag</h1>
+
+                <p>
+                    Identify registered evidence using its assigned tag.
+                </p>
+            </div>
+
+        </header>
+
+
+        <!-- ======================================
+             SCAN SECTION
+        ======================================= -->
+
+        <section class="page-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Evidence Tag Scanner</h2>
+
+                    <p>
+                        Scan or manually enter the Evidence Tag ID.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- SCAN CARD -->
+
+            <div class="card scan-card">
+
+                <form id="scanForm">
+
+                    <div class="form-group">
+
+                        <label for="tagId">
+                            Evidence Tag ID
+                        </label>
+
+                        <input
+                            type="text"
+                            id="tagId"
+                            name="tagId"
+                            placeholder="Example: RFID-0001"
+                            autocomplete="off"
+                        >
+
+                        <small>
+                            Enter the ID printed on or associated with
+                            the evidence tag.
+                        </small>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            Scan Tag
+                        </button>
+
+                        <button
+                            type="button"
+                            id="resetScanBtn"
+                            class="btn btn-secondary"
+                        >
+                            Clear
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- ==================================
+                 SCAN RESULT
+            =================================== -->
+
+            <div
+                id="scanResult"
+                class="scan-result"
+            >
+
+                <div
+                    id="resultIcon"
+                    class="result-icon"
+                ></div>
+
+
+                <div class="result-content">
+
+                    <h3 id="resultTitle">
+                        Ready to Scan
+                    </h3>
+
+                    <p id="resultMessage">
+                        Enter an Evidence Tag ID to begin.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==================================
+                 EVIDENCE DETAILS
+            =================================== -->
+
+            <div
+                id="evidenceDetails"
+                class="card evidence-details"
+            >
+
+                <div class="section-header">
+
+                    <div>
+                        <h2>Evidence Identified</h2>
+
+                        <p>
+                            The scanned tag is associated with this
+                            registered evidence item.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="details-grid">
+
+                    <div class="detail-item">
+                        <span class="detail-label">
+                            Evidence ID
+                        </span>
+
+                        <strong id="evidenceIdValue">
+                            —
+                        </strong>
+                    </div>
+
+
+                    <div class="detail-item">
+                        <span class="detail-label">
+                            Case ID
+                        </span>
+
+                        <strong id="caseIdValue">
+                            —
+                        </strong>
+                    </div>
+
+
+                    <div class="detail-item">
+                        <span class="detail-label">
+                            Evidence Type
+                        </span>
+
+                        <strong id="evidenceTypeValue">
+                            —
+                        </strong>
+                    </div>
+
+
+                    <div class="detail-item">
+                        <span class="detail-label">
+                            Description
+                        </span>
+
+                        <strong id="evidenceDescriptionValue">
+                            —
+                        </strong>
+                    </div>
+
+
+                    <div class="detail-item">
+                        <span class="detail-label">
+                            Collection Location
+                        </span>
+
+                        <strong id="collectionLocationValue">
+                            —
+                        </strong>
+                    </div>
+
+
+                    <div class="detail-item">
+                        <span class="detail-label">
+                            Collection Date
+                        </span>
+
+                        <strong id="collectionDateValue">
+                            —
+                        </strong>
+                    </div>
+
+
+                    <div class="detail-item">
+                        <span class="detail-label">
+                            Collected By
+                        </span>
+
+                        <strong id="collectedByValue">
+                            —
+                        </strong>
+                    </div>
+
+
+                    <div class="detail-item">
+                        <span class="detail-label">
+                            Current Status
+                        </span>
+
+                        <strong id="evidenceStatusValue">
+                            —
+                        </strong>
+                    </div>
+
+
+                    <div class="detail-item">
+                        <span class="detail-label">
+                            Tag Type
+                        </span>
+
+                        <strong id="tagTypeValue">
+                            —
+                        </strong>
+                    </div>
+
+
+                    <div class="detail-item">
+                        <span class="detail-label">
+                            Tag ID
+                        </span>
+
+                        <strong id="tagIdValue">
+                            —
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <!-- NEXT STEP -->
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        id="continueBtn"
+                        class="btn btn-primary"
+                    >
+                        Continue to Personnel Verification
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ======================================
+             FOOTER
+        ======================================= -->
+
+        <footer class="page-footer">
+            Digi-CoC — Digital Chain of Custody System
+        </footer>
+
+    </main>
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+    =========================================== -->
+
+    <script src="js/scan.js"></script>
+
+</body>
+</html>
