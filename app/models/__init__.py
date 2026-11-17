@@ -5,8 +5,16 @@ from app.models.cases import Case
 from app.models.evidence import Evidence
 from app.models.evidence_images import EvidenceImage
 from app.models.evidence_tags import EvidenceTag
+from app.models.devices import Device
+
+# Access request model is required by CustodyEvent.
+from app.models.access_requests import AccessRequest
+
 from app.models.custody_events import CustodyEvent
 from app.models.unauthorized_attempts import UnauthorizedAttempt
 from app.models.audit_logs import AuditLog
-from app.models.devices import Device
+
 from app.models.biometric_verifications import BiometricVerification
+from app.models.biometric_enrollments import BiometricEnrollment
+from app.models.biometric_templates import BiometricTemplate
+from app.models.biometric_enrollment_sessions import (BiometricEnrollmentSession,)

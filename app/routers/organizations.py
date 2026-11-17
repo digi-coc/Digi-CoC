@@ -4,7 +4,7 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
-from app.database.connections import get_db
+from app.database_old import get_db
 from app.models.organisations import Organization
 from app.schemas.organization import (
     OrganizationCreate,

@@ -1,4 +1,3 @@
-
 from uuid import uuid4
 
 from sqlalchemy import (
@@ -33,7 +32,6 @@ class Device(Base):
         index=True,
     )
 
-    # Stable identifier assigned during device registration.
     device_code: Mapped[str] = mapped_column(
         String(100),
         nullable=False,
@@ -48,6 +46,14 @@ class Device(Base):
     description: Mapped[str | None] = mapped_column(
         String(250),
         nullable=True,
+    )
+
+    # SHA-256 hash of the device's API key.
+    # The original key is never stored in the database.
+    api_key_hash: Mapped[str | None] = mapped_column(
+        String(64),
+        nullable=True,
+        unique=True,
     )
 
     is_active: Mapped[bool] = mapped_column(
@@ -78,7 +84,8 @@ class Device(Base):
     __table_args__ = (
         CheckConstraint(
             "device_type IN ('ESP32_CONTROLLER', "
-            "'FINGERPRINT_SENSOR', 'RFID_READER', 'NFC_READER', 'OTHER')",
+            "'FINGERPRINT_SENSOR', 'RFID_READER', "
+            "'NFC_READER', 'OTHER')",
             name="ck_devices_device_type",
         ),
     )

@@ -79,3 +79,7 @@ class Personnel(Base):
             name="uq_personnel_org_code",
         ),
     )
+    password_hash: Mapped[str | None] = mapped_column(
+    String(255),
+    nullable=True,
+)

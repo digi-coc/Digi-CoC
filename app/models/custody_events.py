@@ -1,4 +1,3 @@
-
 from uuid import uuid4
 
 from sqlalchemy import (
@@ -7,6 +6,7 @@ from sqlalchemy import (
     ForeignKey,
     String,
     Text,
+    UniqueConstraint,
     func,
 )
 from sqlalchemy.dialects.postgresql import UUID
@@ -16,14 +16,12 @@ from app.database.base import Base
 
 
 class CustodyEvent(Base):
-    """Append-only record of an evidence custody event."""
+    """Append-only record of an evidence custody transfer."""
 
     __tablename__ = "custody_events"
 
     id: Mapped[UUID] = mapped_column(
-        UUID(as_uuid=True),
-        primary_key=True,
-        default=uuid4,
+        UUID(as_uuid=True), primary_key=True, default=uuid4
     )
 
     evidence_id: Mapped[UUID] = mapped_column(
@@ -33,7 +31,13 @@ class CustodyEvent(Base):
         index=True,
     )
 
-    # Nullable because an initial custody assignment may have no sender.
+    performed_by_personnel_id: Mapped[UUID | None] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("personnel.id"),
+        nullable=True,
+        index=True,
+    )
+
     from_personnel_id: Mapped[UUID | None] = mapped_column(
         UUID(as_uuid=True),
         ForeignKey("personnel.id"),
@@ -46,19 +50,35 @@ class CustodyEvent(Base):
         nullable=False,
     )
 
-    transfer_reason: Mapped[str] = mapped_column(
-        String(250),
-        nullable=False,
-    )
-
-    location: Mapped[str | None] = mapped_column(
-        String(250),
+    device_id: Mapped[UUID | None] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("devices.id"),
         nullable=True,
     )
 
+    access_request_id: Mapped[UUID | None] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("access_requests.id"),
+        nullable=True,
+    )
+
+    biometric_verification_id: Mapped[UUID | None] = mapped_column(
+        UUID(as_uuid=True),
+        ForeignKey("biometric_verifications.id"),
+        nullable=True,
+        index=True,
+    )
+
+    transfer_reason: Mapped[str] = mapped_column(
+        String(250), nullable=False
+    )
+
+    location: Mapped[str | None] = mapped_column(
+        String(250), nullable=True
+    )
+
     verification_method: Mapped[str] = mapped_column(
-        String(50),
-        nullable=False,
+        String(50), nullable=False
     )
 
     event_time: Mapped[DateTime] = mapped_column(
@@ -67,19 +87,14 @@ class CustodyEvent(Base):
         server_default=func.now(),
     )
 
-    # Optional hash-chain fields. The service layer will calculate them.
     previous_hash: Mapped[str | None] = mapped_column(
-        String(64),
-        nullable=True,
+        String(64), nullable=True
     )
 
     event_hash: Mapped[str | None] = mapped_column(
-        String(64),
-        nullable=True,
-        unique=True,
+        String(64), nullable=True, unique=True
     )
 
-    # Corrections should reference the event being corrected.
     corrects_event_id: Mapped[UUID | None] = mapped_column(
         UUID(as_uuid=True),
         ForeignKey("custody_events.id"),
@@ -87,11 +102,14 @@ class CustodyEvent(Base):
     )
 
     correction_reason: Mapped[str | None] = mapped_column(
-        Text,
-        nullable=True,
+        Text, nullable=True
     )
 
     __table_args__ = (
+        UniqueConstraint(
+            "access_request_id",
+            name="uq_custody_access_request",
+        ),
         CheckConstraint(
             "from_personnel_id IS NULL OR "
             "from_personnel_id <> to_personnel_id",

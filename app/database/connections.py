@@ -1,49 +1,32 @@
-from sqlalchemy import create_engine, text
-from sqlalchemy.orm import Session, sessionmaker
 
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 
 from app.core.config import settings
 
 
-# Create the SQLAlchemy engine
+# Load the database URL from the existing application settings.
+DATABASE_URL = settings.database_url
+
+
+# Create the database engine.
 engine = create_engine(
-    settings.DATABASE_URL,
-    echo=True
+    DATABASE_URL,
+    pool_pre_ping=True,
 )
 
 
-def test_database_connection():
-    """
-    Tests the connection between the Digi-CoC backend
-    and the PostgreSQL database.
-    """
-    try:
-        with engine.connect() as connection:
-            result = connection.execute(text("SELECT 1"))
-
-            print("================================")
-            print("PostgreSQL connection successful!")
-            print("Database test result:", result.scalar())
-            print("================================")
-
-    except Exception as error:
-        print("================================")
-        print("PostgreSQL connection failed!")
-        print("Error:", error)
-        print("================================")
-
-
-# Create a factory for database sessions.
+# Create the database session factory.
 SessionLocal = sessionmaker(
     bind=engine,
+    autocommit=False,
     autoflush=False,
-    expire_on_commit=False,
 )
 
 
+# Provide database sessions to FastAPI endpoints.
 def get_db():
-    """Provide a database session for one API request."""
-    db: Session = SessionLocal()
+    db = SessionLocal()
 
     try:
         yield db

@@ -3,10 +3,11 @@ from sqlalchemy.orm import DeclarativeBase
 
 class Base(DeclarativeBase):
     """
-    Base class for all Digi-CoC database models.
+    Common SQLAlchemy base class for all Digi-CoC models.
 
-    Every SQLAlchemy model will inherit from this class.
-    Alembic will use this Base to detect database tables.
+    Every database model inherits from this class.
+    Alembic uses Base.metadata to identify database tables
+    when generating migrations.
     """
 
     pass
